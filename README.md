@@ -122,3 +122,8 @@ from(bucket: "powertag")
 
 - Improve ash protocol error handling
 - Finish MQTT support
+
+## Trouble shooting
+Error during pairing
+[WARN] gp: could not decrypt or validate GPF
+Reset powertag by powering off the device
