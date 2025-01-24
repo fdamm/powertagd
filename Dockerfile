@@ -1,12 +1,12 @@
 FROM golang:1.18-alpine as build
 
-# Build powertag2mqtt
-WORKDIR /powertag2mqtt
-COPY powertag2mqtt/go.mod ./
-COPY powertag2mqtt/*.go ./
-RUN go mod tidy
-RUN go mod download && go mod verify
-RUN CGO_ENABLED=0 GOOS=linux go build -o /powertag2mqtt/powertag2mqtt
+## Build powertag2mqtt
+#WORKDIR /powertag2mqtt
+#COPY powertag2mqtt/go.mod ./
+#COPY powertag2mqtt/*.go ./
+#RUN go mod tidy
+#RUN go mod download && go mod verify
+#RUN CGO_ENABLED=0 GOOS=linux go build -o /powertag2mqtt/powertag2mqtt
 
 # Build powertagd
 RUN apk update && apk upgrade
