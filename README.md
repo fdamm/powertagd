@@ -127,3 +127,6 @@ from(bucket: "powertag")
 Error during pairing
 [WARN] gp: could not decrypt or validate GPF
 Reset powertag by powering off the device
+
+# Ensure robustness when it is not possible to connect to MQTT server
+

@@ -1,3 +1,8 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 *.o
 *.a
 *.dSYM
@@ -6,4 +11,5 @@ src/powertagctl
 src/test_crypto
 target
 Cargo.lock
-/powertag2influx
+
+/appdata
