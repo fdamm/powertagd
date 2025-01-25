@@ -2,7 +2,10 @@ version: '3'
 services:
   powertag:
     container_name: powertag2mqtt
-    build: .
+    image: powertag2mqtt
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     #restart: unless-stopped
     privileged: true
     devices:
