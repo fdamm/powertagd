@@ -1,12 +1,4 @@
-FROM golang:1.18-alpine as build
-
-## Build powertag2mqtt
-#WORKDIR /powertag2mqtt
-#COPY powertag2mqtt/go.mod ./
-#COPY powertag2mqtt/*.go ./
-#RUN go mod tidy
-#RUN go mod download && go mod verify
-#RUN CGO_ENABLED=0 GOOS=linux go build -o /powertag2mqtt/powertag2mqtt
+FROM woahbase/alpine-glibc:2.39 as build
 
 # Build powertagd
 RUN apk update && apk upgrade
@@ -16,20 +8,6 @@ COPY src/ /powertagd/src
 #RUN git clone https://github.com/jlama/powertagd.git
 WORKDIR /powertagd/src
 RUN make clean && make
-
-#FROM alpine
-#
-#RUN mkdir /powertag
-#WORKDIR /powertag
-#COPY --from=build /powertag2mqtt/powertag2mqtt .
-#COPY --from=build /powertagd/src/powertagd /powertagd/src/powertagctl ./
-#
-#COPY run.sh ./
-#RUN chmod +x ./run.sh
-#
-#ENTRYPOINT ["/powertag/run.sh"]
-##ENTRYPOINT ["/bin/sh"]
-##ENTRYPOINT ["/bin/sleep", "6000"]
 
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.12-alpine
@@ -53,10 +31,8 @@ COPY --from=build /powertagd/src/powertagd /powertagd/src/powertagctl ./
 COPY run.sh ./
 RUN chmod +x ./run.sh
 
-
 RUN mkdir /var/lib/data
 ENV HOME_DIR /var/lib/appdata
-
 
 ## Creates a non-root user with an explicit UID and adds permission to access the /app folder
 ## For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
