@@ -150,7 +150,7 @@ static const char *key2str(uint8_t k[16])
 #ifdef __linux__
 
 // glibc implements arc4random functions since version 2.36
-#if defined(__GLIBC__) && __GLIBC_MINOR__ < 36
+//#if defined(__GLIBC__) && __GLIBC_MINOR__ < 36
 #include <sys/random.h>
 
 static void arc4random_buf(void *buf, size_t nbytes)
@@ -172,6 +172,6 @@ static const char *getprogname(void)
 	extern char *__progname;
 	return __progname;
 }
-#endif
+//#endif
 
 #endif
