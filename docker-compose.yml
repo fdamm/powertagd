@@ -1,4 +1,3 @@
-version: '3'
 services:
   powertag:
     container_name: powertag2mqtt

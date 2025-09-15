@@ -137,3 +137,17 @@ Reset powertag by powering off the device
 
 # Ensure robustness when it is not possible to connect to MQTT server
 
+# Pairing
+Run container with interactive shell
+```
+sudo docker run -it --entrypoint /bin/sh -v /dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20220811170007-if00:/dev/ttyACM0 --privileged powertag2mqtt
+```
+In the shell, activate pairing:
+```
+./powertagctl -d /dev/ttyACM1 pair
+```
+Turn the powertag on and wait for it to pair. When the paring has taken place, run the docker container in normal execution mode.
+
+Command:
+ ./powertagctl -d /dev/ttyACM1 invert-flow 0xe204a6fd
+It does not seem to work!
